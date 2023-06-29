@@ -10,6 +10,7 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include "data.h"
+#include <iostream>
 
 class LinkedList
 {
@@ -26,10 +27,16 @@ public:
     void printList(bool = false);
     int getCount();
     void clearList();
-    bool exsit(int);
+    bool exists(int);
+
+private:
+    Node* head;
+    int count;
+    //private methods
+    Node* createNode(int, string*);
+    void destroyNode(Node*);
+    Node* findNode(int);
+};
 
 
-    
-    
-  
-}
+#endif
