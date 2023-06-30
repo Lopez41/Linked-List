@@ -42,6 +42,30 @@ bool LinkedList::addNode(int id, string* data) {
     return success;
 }
 
+bool LinkedList::deleteNode(int id) {
+    bool success = false; // Initialize the success variable as false
+
+    Node* nodeToDelete = findNode(id);
+    if (nodeToDelete != nullptr) {
+        if (nodeToDelete == head) {
+            head = nodeToDelete->next;
+        } else {
+            nodeToDelete->prev->next = nodeToDelete->next;
+        }
+
+        if (nodeToDelete->next != nullptr) {
+            nodeToDelete->next->prev = nodeToDelete->prev;
+        }
+
+        destroyNode(nodeToDelete);
+        count--;
+        success = true; // Node deletion successful
+    }
+
+    return success;
+}
+
+
 
 
 
