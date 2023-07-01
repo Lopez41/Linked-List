@@ -8,13 +8,13 @@
 *******************/
 #include "linkedlist.h"
 
-LinkedList::LinkedList() 
-{
+LinkedList::LinkedList()
+ {
     head = nullptr;
     count = 0;
 }
 
-LinkedList::~LinkedList() 
+LinkedList::~LinkedList()
 {
     clearList();
 }
@@ -23,7 +23,8 @@ bool LinkedList::addNode(int id, string* data)
 {
   bool success = false; // Variable to track the success of adding a node
 
-    if (!exists(id)) { // Check if a node with the same ID already exists
+    if (!exists(id)) 
+    { // Check if a node with the same ID already exists
         Node* newNode = createNode(id, data);
         if (newNode != nullptr) 
         { // Check if memory allocation for the new node is successful
@@ -34,7 +35,7 @@ bool LinkedList::addNode(int id, string* data)
             else 
             {
                 Node* current = head;
-                while (current->next != nullptr) 
+                while (current->next != nullptr)
                 {
                     current = current->next;
                 }
@@ -57,7 +58,7 @@ bool LinkedList::deleteNode(int id)
     Node* nodeToDelete = findNode(id);
     if (nodeToDelete != nullptr) 
     {
-        if (nodeToDelete == head) 
+        if (nodeToDelete == head)
         {
             head = nodeToDelete->next;
         } 
@@ -84,8 +85,8 @@ bool LinkedList::getNode(int id, Data* returnData)
     bool success = false; 
 
     Node* node = findNode(id);
-    if (node != nullptr)
-     {
+    if (node != nullptr) 
+    {
         *returnData = node->data;
         success = true; // Node retrieval successful
     }
@@ -97,6 +98,26 @@ bool LinkedList::exists(int id)
 {
     return findNode(id) != nullptr;
 }
+
+void LinkedList::clearList() 
+{
+    Node* current = head;
+    while (current != nullptr) 
+    {
+        Node* next = current->next;
+        destroyNode(current);
+        current = next;
+    }
+
+    head = nullptr;
+    count = 0;
+}
+
+int LinkedList::getCount() 
+{
+    return count;
+}
+
 
 
 
