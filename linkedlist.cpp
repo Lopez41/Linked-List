@@ -118,6 +118,34 @@ int LinkedList::getCount()
     return count;
 }
 
+void LinkedList::printList(bool reverseOrder) 
+{
+    Node* current = head;
+
+    if (reverseOrder) 
+    {
+        while (current != nullptr && current->next != nullptr) 
+        {
+            current = current->next;
+        }
+    }
+    
+    while (current != nullptr) 
+    {
+        std::cout << "ID: " << current->data.id << ", Data: " << current->data.data << std::endl;
+        current = reverseOrder ? current->prev : current->next;
+    }
+}
+
+Node* LinkedList::createNode(int id, string* data) 
+{
+    Node* newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+    newNode->next = nullptr;
+    newNode->prev = nullptr;
+    return newNode;
+}
 
 
 
