@@ -8,26 +8,34 @@
 *******************/
 #include "linkedlist.h"
 
-LinkedList::LinkedList() {
+LinkedList::LinkedList() 
+{
     head = nullptr;
     count = 0;
 }
 
-LinkedList::~LinkedList() {
+LinkedList::~LinkedList() 
+{
     clearList();
 }
 
-bool LinkedList::addNode(int id, string* data) {
+bool LinkedList::addNode(int id, string* data) 
+{
   bool success = false; // Variable to track the success of adding a node
 
     if (!exists(id)) { // Check if a node with the same ID already exists
         Node* newNode = createNode(id, data);
-        if (newNode != nullptr) { // Check if memory allocation for the new node is successful
-            if (head == nullptr) {
+        if (newNode != nullptr) 
+        { // Check if memory allocation for the new node is successful
+            if (head == nullptr) 
+            {
                 head = newNode;
-            } else {
+            } 
+            else 
+            {
                 Node* current = head;
-                while (current->next != nullptr) {
+                while (current->next != nullptr) 
+                {
                     current = current->next;
                 }
                 current->next = newNode;
@@ -42,18 +50,24 @@ bool LinkedList::addNode(int id, string* data) {
     return success;
 }
 
-bool LinkedList::deleteNode(int id) {
+bool LinkedList::deleteNode(int id) 
+{
     bool success = false; // Initialize the success variable as false
 
     Node* nodeToDelete = findNode(id);
-    if (nodeToDelete != nullptr) {
-        if (nodeToDelete == head) {
+    if (nodeToDelete != nullptr) 
+    {
+        if (nodeToDelete == head) 
+        {
             head = nodeToDelete->next;
-        } else {
+        } 
+        else 
+        {
             nodeToDelete->prev->next = nodeToDelete->next;
         }
 
-        if (nodeToDelete->next != nullptr) {
+        if (nodeToDelete->next != nullptr) 
+        {
             nodeToDelete->next->prev = nodeToDelete->prev;
         }
 
@@ -65,6 +79,24 @@ bool LinkedList::deleteNode(int id) {
     return success;
 }
 
+bool LinkedList::getNode(int id, Data* returnData) 
+{
+    bool success = false; 
+
+    Node* node = findNode(id);
+    if (node != nullptr)
+     {
+        *returnData = node->data;
+        success = true; // Node retrieval successful
+    }
+
+    return success;
+}
+
+bool LinkedList::exists(int id) 
+{
+    return findNode(id) != nullptr;
+}
 
 
 
