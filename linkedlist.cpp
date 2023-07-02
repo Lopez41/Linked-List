@@ -98,7 +98,7 @@ bool LinkedList::exists(int id)
 {
     return findNode(id) != nullptr;
 }
-
+//here
 void LinkedList::clearList() 
 {
     Node* current = head;
@@ -130,6 +130,8 @@ void LinkedList::printList(bool reverseOrder)
         }
     }
     
+
+
     while (current != nullptr) 
     {
         std::cout << "ID: " << current->data.id << ", Data: " << current->data.data << std::endl;
@@ -147,6 +149,21 @@ Node* LinkedList::createNode(int id, string* data)
     return newNode;
 }
 
+void LinkedList::destroyNode(Node* node) 
+{
+    delete node;
+}
+
+Node* LinkedList::findNode(int id) {
+    Node* current = head;
+    while (current != nullptr) {
+        if (current->data.id == id) {
+            return current; // Node found
+        }
+        current = current->next;
+    }
+    return nullptr; // Node not found
+}
 
 
 
